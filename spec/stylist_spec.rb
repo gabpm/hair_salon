@@ -30,4 +30,12 @@ describe(Stylist) do
     end
   end
 
+  define_method("#==") do
+    it("is the same name if it has the same name") do
+      test_stylist = Stylist.new({:name => "Sophia", :id => nil})
+      test_stylist2 = Stylist.new({:name => "Mariana", :id => nil})
+      expect(test_stylist).to(eq(test_stylist2))
+    end
+  end
+
 end

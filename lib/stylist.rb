@@ -21,4 +21,8 @@ class Stylist
    result = DB.exec("INSERT INTO stylists (name) VALUES ('#{@name}') RETURNING id;")
    @id = result.first().fetch("id").to_i()
  end
+
+ define_method(:==) do |another|
+   self.name().==(another.name())
+ end
 end
