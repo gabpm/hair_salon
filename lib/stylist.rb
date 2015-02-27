@@ -35,4 +35,16 @@ class Stylist
    end
    found_stylist
 end
+
+ define_method(:clients) do
+  list_clients = []
+  clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{self.id()};")
+  clients.each do |client|
+    name = client.fetch("name")
+    id = client.fetch("id").to_i()
+    stylist_id = client.fetch("stylist_id").to_i()
+    list_clients.push(Client.new({:name => name, :id => id, :stylist_id => stylist_id}))
+  end
+  list_clients
+end
 end
